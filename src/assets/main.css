@@ -1,0 +1,10 @@
+*{
+    font-family: 'Clash Grotesk', sans-serif;
+}
+body {
+    min-height: 100vh;
+    background-color: #F3F4F6;
+}
+img {
+    max-width: 100%;
+}
