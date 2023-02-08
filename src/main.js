@@ -7,8 +7,10 @@ import './index.css'
 
 import store from "./store/store";
 
+import VueLazyLoad from 'vue3-lazyload'
+
 const app = createApp(App)
 
-app.use(router).use(store)
+app.use(router).use(store).use(VueLazyLoad, {})
 
 app.mount('#app')

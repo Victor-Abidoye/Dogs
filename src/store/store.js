@@ -5,11 +5,29 @@ export default createStore({
     state: {
         age: 1,
         breeds: {},
-        randomImages: []
+        randomImages: [],
+        loading: false,
+        images: []
     },
     getters: {
         breedList (state) {
             return Object.keys(state.breeds)
+        },
+    },
+    mutations: {
+        filterImg (state, payload) {
+            if (payload.length <= 0) {
+                state.images = [...state.randomImages]
+                return
+            }
+            state.images = []
+            payload.forEach(link => {
+                const result = state.randomImages.filter((img => {
+                    return img.toLowerCase().includes(link.toLowerCase())
+                }))
+                state.images = [...state.images, ...result]
+            });
+            console.log(state.images);
         }
     },
     actions: {
@@ -26,6 +44,7 @@ export default createStore({
         async getRamdomImages (context, payload) {
             console.log(payload)
             try {
+                context.state.loading = true
                 let remainder;
 
                 if (payload > 50) {
@@ -43,7 +62,13 @@ export default createStore({
 
             } catch (error) {
                 console.log(error)
+            } finally {
+                context.state.loading = false
+                context.commit('filterImg', [])
             }
+        },
+        filterImg (context, payload) {
+            context.commit('filterImg', payload)
         }
     }
 })

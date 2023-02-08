@@ -1,13 +1,18 @@
 <script setup>
 import { useStore } from 'vuex'
-import { computed } from 'vue'
+import { computed, onMounted } from 'vue'
 
 const customStore = useStore('store')
 
-const age = computed(() => customStore.state.age)
+const props = defineProps(['breed', '_id'])
+
+onMounted(() => {
+  
+})
+
 </script>
 <template>
-  <h1 class="">{{ age }}</h1>
+
 </template>
 
 <style></style>

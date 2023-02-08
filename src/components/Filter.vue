@@ -1,6 +1,6 @@
 <script setup>
 import { useStore } from 'vuex'
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 
 const customStore = useStore()
 
@@ -16,6 +16,14 @@ const filterBreed = computed(() => {
     breed.toLowerCase().includes(search.value.toLowerCase())
   )
 })
+
+watch(
+  () => selectedBreeds.value,
+  () => {
+    console.log('sdkfjsa');
+    customStore.dispatch('filterImg', selectedBreeds.value)
+  }
+)
 </script>
 <template>
   <div class="bg-white p-4">

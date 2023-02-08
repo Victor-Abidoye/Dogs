@@ -10,8 +10,9 @@ const router = createRouter({
       component: HomeView
     },
     {
-      path: '/:breed',
+      path: '/:breed/:_id',
       name: 'breed',
+      props: true,
       component: () => import('../views/BreedView.vue')
     }
   ]

@@ -17,8 +17,8 @@ onMounted(() => {
 </script>
 
 <template>
-  <div>
-    <TopNav class="xl:px-4" />
+  <div >
+    <TopNav class="xl:px-4 sticky top-0 shadow-sm z-10" />
     <main class="px-4 xl:px-9">
       <Header/>
       <RouterView />
