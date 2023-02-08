@@ -12,6 +12,7 @@ const breedCategory = computed(() => {
 
 onMounted(() => {
   customStore.dispatch('getBreeds')
+  customStore.dispatch('getRamdomImages', 60)
 })
 </script>
 
