@@ -2,6 +2,17 @@
 import { RouterLink, RouterView } from 'vue-router'
 import TopNav from './components/TopNav.vue'
 import Header from './components/Header.vue'
+import { onMounted, computed } from 'vue';
+import { useStore } from 'vuex'
+
+const customStore = useStore()
+const breedCategory = computed(() => {
+  return customStore.dispatch('breedList')
+})
+
+onMounted(() => {
+  customStore.dispatch('getBreeds')
+})
 </script>
 
 <template>
