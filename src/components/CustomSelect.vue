@@ -11,9 +11,16 @@ const breedCategory = computed(() => {
 })
 </script>
 <template>
-  <select name="breeds" id="breeds" class="px-4 py-1" v-model="selectedBreed">
-    <option value="all">-- select a breed --</option>
-    <option :value="breed" v-for="breed in breedCategory">{{ breed }}</option>
+  <select
+    name="breeds"
+    id="breeds"
+    class="px-4 py-1 capitalize"
+    v-model="selectedBreed"
+  >
+    <option class="capitalize" value="all">-- select a breed --</option>
+    <option class="capitalize" :value="breed" v-for="breed in breedCategory">
+      {{ breed }}
+    </option>
   </select>
 </template>
 
