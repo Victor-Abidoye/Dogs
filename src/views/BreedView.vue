@@ -29,8 +29,8 @@ onMounted(() => {
 </script>
 <template>
   <div>
-    <div @click="router.back(-1)" tabindex="1" class="hover:shadow-lg hover:scale-110 bg-white my-4 w-6 aspect-square rounded-full  flex justify-center items-center">
-      <i class="fa-solid fa-arrow-left"></i>
+    <div @click="router.back(-1)" tabindex="1" class="hover:shadow-lg hover:scale-110 bg-white my-3 w-8  aspect-square rounded-full  flex justify-center items-center">
+      <i class="fa-solid fa-arrow-left text-sm"></i>
     </div>
     <main
       class="py-8 grid gap-8 sm:grid-cols-[250px,_auto] md:grid-cols-[350px,_auto] grid-flow-dense auto-rows-auto"
