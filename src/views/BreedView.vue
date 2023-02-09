@@ -13,12 +13,17 @@ const randomImages = computed(() => {
   return customStore.state.randomImages
 })
 const findImage = computed(() => {
-  return randomImages.value.find((el) => {
+  const result = randomImages.value.find((el) => {
     const chunck = el.split(/[/\s.]+/)
     // console.log(chunck);
     console.log(props._id.toString() == chunck[chunck.length - 2].toString())
     return props._id.toString() == chunck[chunck.length - 2].toString()
   })
+  console.log(result)
+  if (result === undefined) {
+    router.push({name: 'NotFound'})
+  }
+  return result
 })
 
 onMounted(() => {
@@ -57,7 +62,7 @@ onMounted(() => {
               confident
             </li>
           </ul>
-          <div class="rounded-md bg-white p-4 text-sm mt-3">
+          <div class="rounded-md bg-white p-4 text-sm mt-3 max-w-lg">
             <h2 class="font-semibold text-lg">About the Breed</h2>
             <p class="text-[#4B5563]">
               Loyal, curious, and famously amusing, this almost-human toy dog is

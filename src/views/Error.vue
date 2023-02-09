@@ -5,7 +5,7 @@
             <P class="font-semibold">Hey Doggy</P>
             <div>
                 <p class="text-sm text-red-500">There was an error loading this Dog Details</p>
-                <p class="text-sm text-red-500">or this is probably a broken lin</p>
+                <p class="text-sm text-red-500">or this is probably a broken link</p>
             </div>
             <router-link to="/" class="text-blue-700 underline">Click here to go home</router-link>
         </div>
