@@ -14,7 +14,12 @@ const router = createRouter({
       name: 'breed',
       props: true,
       component: () => import('../views/BreedView.vue')
-    }
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'NotFound',
+      component: () => import('../views/Error.vue'),
+    },
   ]
 })
 

@@ -66,6 +66,7 @@ export default createStore({
                 context.state.loading = true
                 const { data } = await breedImages(payload.breed, payload.amount)
                 context.state.images = [...context.state.images, ...data.message]
+                context.state.randomImages= [...context.state.randomImages, ...data.message]
                 console.log(data.message)
             } catch (error) {
                 console.log(error)
