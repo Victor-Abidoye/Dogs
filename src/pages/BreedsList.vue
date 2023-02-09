@@ -1,52 +1,42 @@
 <script setup>
-import { useStore } from 'vuex';
-import { computed } from 'vue';
+import { useStore } from 'vuex'
+import { computed } from 'vue'
+import { useRouter } from 'vue-router'
+import DogImage from '../components/DogImage.vue';
+import Skeleton from '../components/Skeleton.vue';
 
 const props = defineProps(['images'])
 
 const customStore = useStore()
+const router = useRouter()
 
 const loading = computed(() => {
   return customStore.state.loading
 })
 
+const send = (img) => {
+  const chunck = img.split('/')
+  router.push({
+    name: 'breed',
+    params: {
+      breed: chunck[chunck.length - 2],
+      _id: chunck[chunck.length - 1].slice(
+        0,
+        chunck[chunck.length - 1].indexOf('.')
+      ),
+    },
+  })
+}
 </script>
 <template>
   <div
-    :class="{ 'skeleton h-full': loading}"
     class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-4"
   >
-    <div
-      v-for="image in props.images"
-      class="aspect-square relative rounded-md hover:shadow-lg hover:-rotate-2 hover:scale-105 transition-all duration-200"
-    >
-      <img
-        loading="lazy"
-        v-lazy="{
-          src: image,
-          loading: '',
-          error: 'your error image url',
-        }"
-        class="w-full h-full object-cover rounded-md"
-        alt=""
-      />
-    </div>
+    <Skeleton v-for="ske in 50" v-if="!props.images.length"/>
+    <DogImage v-else @click="send(img)" v-for="img in props.images" :image="img" />
   </div>
 </template>
 
 <style scoped>
-.skeleton {
-  animation: skeleton-loading 1.3s linear infinite alternate;
-}
 
-img[lazy='loading'] {
-  animation: skeleton-loading 1.3s linear infinite alternate;
-}
-@keyframes skeleton-loading {
-  0% {
-    background-color: hsl(200, 20%, 80%);
-  }
-  100% {
-  }
-}
 </style>

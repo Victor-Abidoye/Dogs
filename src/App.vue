@@ -12,7 +12,7 @@ const breedCategory = computed(() => {
 
 onMounted(() => {
   customStore.dispatch('getBreeds')
-  customStore.dispatch('getRamdomImages', 60)
+  customStore.dispatch('getRamdomImages', 125)
 })
 </script>
 
@@ -20,15 +20,11 @@ onMounted(() => {
   <div >
     <TopNav class="xl:px-4 sticky top-0 shadow-sm z-10" />
     <main class="px-4 xl:px-9">
-      <Header/>
       <RouterView />
     </main>
   </div>
 </template>
 
 <style scoped>
-.app-header {
-  background: linear-gradient(98.41deg, #1d2b64 0%, #25020d 100%);
-  border-radius: 12px;
-}
+
 </style>

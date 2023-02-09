@@ -51,8 +51,9 @@ export default createStore({
                     let iterate = Math.floor(payload / 50)
                     remainder = payload % 50
                     while (iterate > 0) {
+                        console.log(iterate);
                         const { data } = await fetchRandomImages(50)
-                        context.state.randomImages = [...data.message]
+                        context.state.randomImages = [...context.state.randomImages, ...data.message]
                         iterate = iterate - 1
                     }
                 }

@@ -8,3 +8,19 @@ body {
 img {
     max-width: 100%;
 }
+.skeleton {
+  animation: skeleton-loading 1.3s linear infinite alternate;
+}
+
+img[lazy='loading'] {
+  animation: skeleton-loading 1.3s linear infinite alternate;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-color: hsl(200, 20%, 80%);
+  }
+
+  100% {
+  }
+}

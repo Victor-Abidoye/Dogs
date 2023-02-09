@@ -1,6 +1,7 @@
 <script setup>
 import CustomSelect from '../components/CustomSelect.vue'
 import Filter from '../components/Filter.vue'
+import Header from '../components/Header.vue'
 import BreedsList from '../pages/BreedsList.vue'
 
 import { useStore } from 'vuex'
@@ -18,18 +19,27 @@ const images = computed(() => {
 </script>
 
 <template>
-  <main class="lg:grid lg:grid-cols-[300px,_auto] lg:gap-x-4">
-    <section class="hidden lg:block shadow-sm">
-      <Filter class="" />
-    </section>
-    <section>
-      <div class="flex justify-between items-center">
-        <h3 class="font-semibold text-lg">1 - 100</h3>
-        <CustomSelect />
-      </div>
-      <div class="mt-4">
-        <BreedsList :images="images" />
-      </div>
-    </section>
-  </main>
+  <div>
+    <Header/>
+    <main class="lg:grid lg:grid-cols-[300px,_auto] lg:gap-x-4">
+      <section class="hidden lg:block shadow-sm">
+        <Filter class="" />
+      </section>
+      <section>
+        <div class="flex justify-between items-center">
+          <h3 class="font-semibold text-lg">1 - 100</h3>
+          <CustomSelect />
+        </div>
+        <div class="mt-4">
+          <BreedsList :images="images" />
+        </div>
+      </section>
+    </main>
+  </div>
 </template>
+<style scoped>
+.app-header {
+  background: linear-gradient(98.41deg, #1d2b64 0%, #25020d 100%);
+  border-radius: 12px;
+}
+</style>
