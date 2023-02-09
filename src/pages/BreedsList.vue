@@ -2,8 +2,8 @@
 import { useStore } from 'vuex'
 import { computed } from 'vue'
 import { useRouter } from 'vue-router'
-import DogImage from '../components/DogImage.vue';
-import Skeleton from '../components/Skeleton.vue';
+import DogImage from '../components/DogImage.vue'
+import Skeleton from '../components/Skeleton.vue'
 
 const props = defineProps(['images'])
 
@@ -32,11 +32,16 @@ const send = (img) => {
   <div
     class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-4"
   >
-  <DogImage v-if="props.images.length" @click="send(img)" v-for="img in props.images" :image="img" />
-  <Skeleton  v-else v-for="ske in 50" />
+    <DogImage
+      tabindex="1"
+      v-if="props.images.length"
+      @click="send(img)"
+      v-for="img in props.images"
+      :image="img"
+      class="focus:outline focus:outline-gray-500 focus:outline-4"
+    />
+    <Skeleton v-else v-for="ske in 50" />
   </div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

@@ -5,7 +5,7 @@ import Header from '../components/Header.vue'
 import BreedsList from '../pages/BreedsList.vue'
 
 import { useStore } from 'vuex'
-import { computed, onMounted } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 
 const customStore = useStore()
 
@@ -15,23 +15,32 @@ const randomImages = computed(() => {
 const images = computed(() => {
   return customStore.state.images
 })
+
+const showMobileSearch = ref(false)
 </script>
 
 <template>
   <div>
     <Header />
+
     <main class="lg:grid lg:grid-cols-[300px,_auto] lg:gap-x-4">
-      <section class="hidden lg:block shadow-sm">
-        <Filter class="" />
+      <section
+        class="lg:block shadow-sm relative"
+        :class="[showMobileSearch ? 'block ' : 'hidden']"
+      >
+        <Filter   :class="[showMobileSearch ? 'absolute w-full z-10' : '']" class="" @close-modal="showMobileSearch = false" />
       </section>
       <section>
         <div class="flex justify-between items-center">
           <h3 class="font-semibold text-lg">
-            <span  v-if="images.length">
-               1 - {{ images.length }}
-            </span>
+            <span v-if="images.length"> 1 - {{ images.length }} </span>
           </h3>
-          <CustomSelect />
+          <div>
+            <p  class="lg:hidden text-sm flex items-center gap-x-4" @click="showMobileSearch = true">
+              search <i class="fa-solid fa-magnifying-glass"></i>
+            </p>
+          </div>
+          <!-- <CustomSelect /> -->
         </div>
         <div class="mt-4">
           <BreedsList :images="images" />
