@@ -1,5 +1,5 @@
 import { createStore } from "vuex";
-import { fetchBreeds, fetchRandomImages } from "../service/auth";
+import { breedImages, fetchBreeds, fetchRandomImages } from "../service/auth";
 
 export default createStore({
     state: {
@@ -15,19 +15,12 @@ export default createStore({
         },
     },
     mutations: {
-        filterImg (state, payload) {
-            if (payload.length <= 0) {
-                state.images = [...state.randomImages]
-                return
-            }
-            state.images = []
-            payload.forEach(link => {
-                const result = state.randomImages.filter((img => {
-                    return img.toLowerCase().includes(link.toLowerCase())
-                }))
-                state.images = [...state.images, ...result]
-            });
-            console.log(state.images);
+        breedCount (state, breed) {
+            return state.randomImages.reduce((prev, curr) => {
+                if (curr.toLowerCase().includes(breed)) {
+                    return prev + 1
+                }
+            }, 0)
         }
     },
     actions: {
@@ -60,16 +53,42 @@ export default createStore({
                 if (remainder <= 0) return
                 const { data } = await fetchRandomImages(remainder)
                 context.state.randomImages = [...context.state.randomImages, ...data.message]
-
             } catch (error) {
                 console.log(error)
             } finally {
                 context.state.loading = false
-                context.commit('filterImg', [])
+                context.dispatch('filterImg', [])
+            }
+        },
+
+        async getparticularBreed (context, payload) {
+            try {
+                context.state.loading = true
+                const { data } = await breedImages(payload.breed, payload.amount)
+                context.state.images = [...context.state.images, ...data.message]
+                console.log(data.message)
+            } catch (error) {
+                console.log(error)
+            } finally {
+                context.state.loading = false
             }
         },
         filterImg (context, payload) {
-            context.commit('filterImg', payload)
-        }
+            if (payload.length <= 0) {
+                context.state.images = [...context.state.randomImages]
+                return
+            }
+            context.state.images = []
+            payload.forEach(link => {
+                const result = context.state.randomImages.filter((img => {
+                    return img.toLowerCase().includes(link.toLowerCase())
+                }))
+                if (result.length < 50) {
+                    context.dispatch('getparticularBreed', { breed: link, amount: 2 })
+                }
+                context.state.images = [...context.state.images, ...result]
+            });
+            console.log(context.state.images);
+        },
     }
 })

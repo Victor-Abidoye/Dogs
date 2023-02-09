@@ -6,3 +6,6 @@ export function fetchBreeds () {
 export function fetchRandomImages (amount) {
     return http.get(`breeds/image/random/${amount}`)
 }
+export function breedImages (breed, amount) {
+    return http.get(`/breed/${breed}/images`)
+}
