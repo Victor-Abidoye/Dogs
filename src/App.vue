@@ -6,9 +6,6 @@ import { onMounted, computed } from 'vue';
 import { useStore } from 'vuex'
 
 const customStore = useStore()
-const breedCategory = computed(() => {
-  return customStore.dispatch('breedList')
-})
 
 onMounted(() => {
   customStore.dispatch('getBreeds')

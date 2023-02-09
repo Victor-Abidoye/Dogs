@@ -21,7 +21,6 @@ const filterBreed = computed(() => {
 watch(
   () => selectedBreeds.value,
   () => {
-    console.log('sdkfjsa')
     customStore.dispatch('filterImg', selectedBreeds.value)
   }
 )

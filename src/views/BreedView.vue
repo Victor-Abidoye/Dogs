@@ -6,20 +6,17 @@ import { useRouter } from 'vue-router';
 
 const customStore = useStore('store')
 const router = useRouter()
-
 const props = defineProps(['breed', '_id'])
 
 const randomImages = computed(() => {
   return customStore.state.randomImages
 })
+
 const findImage = computed(() => {
   const result = randomImages.value.find((el) => {
     const chunck = el.split(/[/\s.]+/)
-    // console.log(chunck);
-    console.log(props._id.toString() == chunck[chunck.length - 2].toString())
     return props._id.toString() == chunck[chunck.length - 2].toString()
   })
-  console.log(result)
   if (result === undefined) {
     router.push({name: 'NotFound'})
   }
