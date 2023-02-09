@@ -5,7 +5,7 @@ import Header from '../components/Header.vue'
 import BreedsList from '../pages/BreedsList.vue'
 
 import { useStore } from 'vuex'
-import { computed,onMounted } from 'vue'
+import { computed, onMounted } from 'vue'
 
 const customStore = useStore()
 
@@ -15,19 +15,22 @@ const randomImages = computed(() => {
 const images = computed(() => {
   return customStore.state.images
 })
-
 </script>
 
 <template>
   <div>
-    <Header/>
+    <Header />
     <main class="lg:grid lg:grid-cols-[300px,_auto] lg:gap-x-4">
       <section class="hidden lg:block shadow-sm">
         <Filter class="" />
       </section>
       <section>
         <div class="flex justify-between items-center">
-          <h3 class="font-semibold text-lg">1 - 100</h3>
+          <h3 class="font-semibold text-lg">
+            <span  v-if="images.length">
+               1 - {{ images.length }}
+            </span>
+          </h3>
           <CustomSelect />
         </div>
         <div class="mt-4">

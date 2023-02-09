@@ -20,7 +20,7 @@ const filterBreed = computed(() => {
 watch(
   () => selectedBreeds.value,
   () => {
-    console.log('sdkfjsa');
+    console.log('sdkfjsa')
     customStore.dispatch('filterImg', selectedBreeds.value)
   }
 )
@@ -29,10 +29,12 @@ watch(
   <div class="bg-white p-4">
     <div class="border-b border-[#D1D5DB] flex justify-between pb-2">
       <h3 class="font-bold">Filters</h3>
-      <button class="text-[#217AFF] font-medium">Clear all</button>
+      <button class="text-[#217AFF] font-medium text-sm" @click="selectedBreeds = []">
+        Clear all
+      </button>
     </div>
     <div class="py-2">
-      <h4 class="font-semibold text-sm">Breed(98)</h4>
+      <h4 class="font-semibold text-sm">Breed({{ breedCategory.length }})</h4>
     </div>
     <input
       type="text"

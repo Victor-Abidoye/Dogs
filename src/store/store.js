@@ -7,20 +7,20 @@ export default createStore({
         breeds: {},
         randomImages: [],
         loading: false,
-        images: []
+        images: [],
+        subBreed: []
     },
     getters: {
         breedList (state) {
             return Object.keys(state.breeds)
         },
+
     },
     mutations: {
-        breedCount (state, breed) {
-            return state.randomImages.reduce((prev, curr) => {
-                if (curr.toLowerCase().includes(breed)) {
-                    return prev + 1
-                }
-            }, 0)
+        provideSubBreed (state, breed) {
+            console.log(state.breeds, breed)
+            state.subBreed = []
+            state.subBreed = state.breeds[breed.split('-')[0]]
         }
     },
     actions: {
@@ -73,6 +73,7 @@ export default createStore({
                 context.state.loading = false
             }
         },
+
         filterImg (context, payload) {
             if (payload.length <= 0) {
                 context.state.images = [...context.state.randomImages]
